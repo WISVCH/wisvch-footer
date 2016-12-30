@@ -1,55 +1,52 @@
-<link rel="import" href="../polymer/polymer.html">
+<template id="wisvch-footer">
+  <style>
+    :host {
+      display: block;
+    }
 
-<!--
-`wisvch-footer`
-Polymer footer element for WISVCH
+    p {
+      @apply --wisvch-footer-paragraph;
+    }
 
-@demo demo/index.html
--->
+    li {
+      list-style: none;
+      @apply --wisvch-footer-list-item;
+    }
 
-<dom-module id="wisvch-footer">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
+    span {
+      @apply --wisvch-footer-label;
+    }
+  </style>
+  <p>
+    W.I.S.V. ‘Christiaan Huygens’ (CH) is the study association for students of Applied Mathematics and
+    Computer Science at the Delft University of Technology.
+  </p>
+  <ul>
+    <li><span>Address:</span> Mekelweg 4, 2628CD Delft</li>
+    <li><span>Chamber of Commerce:</span> 40397077</li>
+    <li><span>Phone:</span> 015-278 2532</li>
+  </ul>
+  <p>
+    Copyright © 2015-<span id="year"></span> by W.I.S.V. ‘Christiaan Huygens’. All rights reserved.
+  </p>
+</template>
 
-      p {
-        @apply(--wisvch-footer-paragraph);
-      }
+<script>
+  // Points to this document which has the template
+  const doc = document.currentScript.ownerDocument;
 
-      li {
-        list-style: none;
-        @apply(--wisvch-footer-list-item);
-      }
+  class WisvchFooter extends HTMLElement {
+    constructor() {
+      super();
+      const template = doc.getElementById('wisvch-footer');
 
-      span {
-        @apply(--wisvch-footer-label);
-      }
-    </style>
-    <p>
-      W.I.S.V. ‘Christiaan Huygens’ (CH) is the study association for students of Applied Mathematics and
-      Computer Science at the Delft University of Technology.
-    </p>
-    <ul>
-      <li><span>Address:</span> Mekelweg 4, 2628CD Delft</li>
-      <li><span>Chamber of Commerce:</span> 40397077</li>
-      <li><span>Phone:</span> 015-278 2532</li>
-    </ul>
-    <p>
-      Copyright © 2015-[[_currentYear()]] by W.I.S.V. ‘Christiaan Huygens’. All rights reserved.
-    </p>
-  </template>
+      const clone = document.importNode(template.content, true);
+      clone.getElementById('year').textContent = new Date().getFullYear();
 
-  <script>
-    Polymer({
+      const shadow = this.attachShadow({mode: 'open'});
+      shadow.appendChild(clone);
+    }
+  }
 
-      is: 'wisvch-footer',
-
-      _currentYear: function() {
-        return new Date().getFullYear();
-      }
-
-    });
-  </script>
-</dom-module>
+  customElements.define('wisvch-footer', WisvchFooter);
+</script>
