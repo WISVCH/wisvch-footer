@@ -32,7 +32,7 @@
 </template>
 
 <script>
-(function() {
+(function(document, customElements) {
   // Points to this document which has the template
   const doc = document.currentScript.ownerDocument;
 
@@ -50,5 +50,5 @@
   }
 
   customElements.define('wisvch-footer', WisvchFooter);
-})();
+})(document, window.customElements);
 </script>
