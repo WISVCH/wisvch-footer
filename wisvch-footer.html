@@ -40,12 +40,12 @@
     constructor() {
       super();
       const template = doc.getElementById('wisvch-footer');
-
-      const clone = document.importNode(template.content, true);
-      clone.getElementById('year').textContent = new Date().getFullYear();
+      const clone = template.content.cloneNode(true);
 
       const shadow = this.attachShadow({mode: 'open'});
       shadow.appendChild(clone);
+      
+      shadow.getElementById('year').textContent = new Date().getFullYear();
     }
   }
 
