@@ -8,5 +8,5 @@
     "web-component-tester": "^4.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
   },
-  "version": "2.0.0"
+  "version": "2.0.1"
 }
